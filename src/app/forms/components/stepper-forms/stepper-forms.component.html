@@ -1,0 +1,44 @@
+<div class="container">
+    <mat-horizontal-stepper>
+        <mat-step>
+            <ng-template matStepLabel>Motivo</ng-template>
+            <div class="options">
+                <app-reason-form></app-reason-form>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Producto</ng-template>
+            <div class="options">
+                <form action="">
+                    <label for="product">Producto
+                        <input type="text">
+                    </label>
+                </form>
+                <button mat-button matStepperNext>Next</button>
+                <button mat-button matStepperPrevious>Back</button>
+            </div>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Gestion Requerida</ng-template>
+            <form action="">
+                <label for="request">Gestion Requerida
+                    <input type="text">
+                </label>
+            </form>
+            <button mat-button matStepperNext>Next</button>
+            <button mat-button matStepperPrevious>Back</button>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Resultado</ng-template>
+            <form action="">
+                <label for="result">Resultado
+                    <input type="text">
+                </label>
+            </form>
+        </mat-step>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+        </div>
+    </mat-horizontal-stepper>
+</div>
