@@ -1,0 +1,41 @@
+<div class="row center-xs">
+    <div class="col-12">
+        <h2>¿Sobre que producto?</h2>
+    </div>
+    <div class="col-xs-12">
+        <h3>Tipo de Producto</h3>
+            <mat-form-field appearance="fill">
+                <mat-label>Tipo de Producto</mat-label>
+                <mat-select [formControl]="productControl" name="products">
+                    <mat-option *ngFor="let typeProduct of typeProducts" [value]="typeProduct.name">
+                        {{ typeProduct.name }}
+                    </mat-option>                        
+                </mat-select>
+            </mat-form-field>
+    </div>      
+    <div class="col-xs-12">
+        <div [ngSwitch]="productControl.value">
+            <div *ngSwitchCase="'Cuentas'">
+                <h3>Tipo de Cuenta</h3>
+                <mat-form-field appearance="fill">
+                    <mat-label>Tipo de Cuenta</mat-label>
+                    <mat-select [formControl]="accountControl" name="products">
+                        <mat-option *ngFor="let account of accounts" [value]="account.name">
+                            {{ account.name }}
+                        </mat-option>                        
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div *ngSwitchCase="'Creditos'">
+                <h3>Tipo de Credito</h3>
+                <mat-form-field appearance="fill">
+                    <mat-label>Tipo de Credito</mat-label>
+                    <mat-select  name="products">
+                        <mat-option *ngFor="let credit of credits" [value]="credit.name">
+                            {{ credit.name }}
+                        </mat-option>                        
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>

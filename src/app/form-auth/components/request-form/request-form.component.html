@@ -1,0 +1,16 @@
+<div class="row center-xs">
+    <div class="col-12">
+        <h2>¿Que se requiere hacer?</h2>
+    </div>
+    <div class="col-xs-12">
+        <h3>Requerimiento</h3>
+            <mat-form-field appearance="fill">
+                <mat-label>Requerimiento</mat-label>
+                <mat-select  name="request">
+                    <mat-option *ngFor="let requestAccount of requestsAccount" [value]="requestAccount.name">
+                        {{ requestAccount.name }}
+                    </mat-option>                        
+                </mat-select>
+            </mat-form-field>
+    </div>      
+</div>
