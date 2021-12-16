@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { Product, TypeProduct } from '../../../models/products.model'
+import { Product, TypeProduct } from '../../../core/models/products.model'
+
+import { CallService } from '../../../core/services/calls/call.service'
 
 @Component({
   selector: 'app-products-form',
@@ -11,6 +13,10 @@ export class ProductsFormComponent implements OnInit {
 
   productControl = new FormControl('', Validators.required)
   accountControl = new FormControl('', Validators.required)
+
+  constructor(
+    private callService: CallService
+  ) {   }   
 
   typeProducts: TypeProduct[] = [
     {
@@ -74,7 +80,6 @@ export class ProductsFormComponent implements OnInit {
     },
     
   ]
-  constructor() { }
 
   ngOnInit(): void {
   }

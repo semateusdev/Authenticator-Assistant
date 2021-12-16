@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ResultAuthComponent implements OnInit {
 
+  AuthResult: string = 'strongAuth'
   constructor(
     private dialog: MatDialog
   ) { }

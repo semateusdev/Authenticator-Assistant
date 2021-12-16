@@ -10,6 +10,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatInputModule} from '@angular/material/input';
 
 
 
@@ -25,7 +26,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatCardModule,
     MatRadioModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatInputModule
   ],
   exports: [
     MatStepperModule,
@@ -36,7 +38,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatCardModule,
     MatRadioModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatInputModule
   ]
 })
 export class MaterialModule { }

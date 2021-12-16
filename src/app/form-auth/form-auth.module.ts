@@ -9,6 +9,10 @@ import { ReasonFormComponent } from './components/reason-form/reason-form.compon
 import { ProductsFormComponent } from './components/products-form/products-form.component';
 import { RequestFormComponent } from './components/request-form/request-form.component';
 import { ResultAuthComponent } from './components/result-auth/result-auth.component';
+import { StrongAuthResultComponent } from './components/strong-auth-result/strong-auth-result.component';
+import { AuthOkResultComponent } from './components/auth-ok-result/auth-ok-result.component';
+import { MeanAuthResultComponent } from './components/mean-auth-result/mean-auth-result.component';
+import { MeanIvrResultComponent } from './components/mean-ivr-result/mean-ivr-result.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +21,10 @@ import { ResultAuthComponent } from './components/result-auth/result-auth.compon
     ProductsFormComponent,
     RequestFormComponent,
     ResultAuthComponent,
+    StrongAuthResultComponent,
+    AuthOkResultComponent,
+    MeanAuthResultComponent,
+    MeanIvrResultComponent,
   ],
   imports: [
     CommonModule,

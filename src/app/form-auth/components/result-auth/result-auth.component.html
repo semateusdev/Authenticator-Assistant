@@ -1,32 +1,6 @@
-<div class="row">
-    <div class="col-xs-4">
-        <img width="100px" src="../../../../assets/images/advertencia.png" alt="">
-    </div>
-    <div class="col-xs-8">
-        <h2>Para continuar debes enviar codigo OTP al celular registrado</h2>
-        <p>¿El cliente te confirma el codigo?</p>
-        <mat-radio-group aria-label="Select an option">
-            <mat-radio-button value="1">Si</mat-radio-button>
-            <mat-radio-button value="2">No</mat-radio-button>
-        </mat-radio-group>
-        <h2>Adicionalmente realiza las siguientes preguntas</h2>
-        <p>¿Hace cuanto fue el ultimo retiro por cajero automatico?</p>
-        <mat-radio-group aria-label="Select an option">
-            <mat-radio-button value="1">Correcto</mat-radio-button>
-            <mat-radio-button value="2">Incorrecto</mat-radio-button>
-        </mat-radio-group>
-        <p> </p>
-        <p>¿Su cuenta se encuentra exenta de cobro de 4*1000?</p>
-        <mat-radio-group aria-label="Select an option">
-            <mat-radio-button value="1">Correcto</mat-radio-button>
-            <mat-radio-button value="2">Incorrecto</mat-radio-button>
-        </mat-radio-group>
-        <p> </p>
-        <p>¿Por medio de canal u oficina hizo la apertura de cuenta?</p>
-        <mat-radio-group aria-label="Select an option">
-            <mat-radio-button value="1">Correcto</mat-radio-button>
-            <mat-radio-button value="2">Incorrecto</mat-radio-button>
-        </mat-radio-group>
-    </div>
-    <!-- <button mat-button >Continuar</button> -->
+<div [ngSwitch]="AuthResult">
+    <div *ngSwitchCase="'authOk'"><app-auth-ok-result></app-auth-ok-result></div>
+    <div *ngSwitchCase="'meanAuth'"><app-mean-auth-result></app-mean-auth-result></div>
+    <div *ngSwitchCase="'meanIVR'"><app-mean-ivr-result></app-mean-ivr-result></div>
+    <div *ngSwitchCase="'strongAuth'"><app-strong-auth-result></app-strong-auth-result></div>
 </div>

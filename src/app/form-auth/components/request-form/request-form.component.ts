@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { request } from '../../../models/products.model'
+import { request } from '../../../core/models/products.model'
 @Component({
   selector: 'app-request-form',
   templateUrl: './request-form.component.html',

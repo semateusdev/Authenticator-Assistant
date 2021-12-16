@@ -4,7 +4,6 @@
             <ng-template matStepLabel>Motivo</ng-template>
             <div class="box-options">
                 <app-reason-form></app-reason-form>
-                <button mat-button matStepperNext>Siguiente</button>
             </div>
         </mat-step>
         <mat-step>
@@ -12,18 +11,18 @@
             <div class="box-options">
                 <app-products-form></app-products-form>
                 <div>
-                    <button mat-button matStepperPrevious>Anterior</button>
-                    <button mat-button matStepperNext>Siguiente</button>
+                    <button mat-stroked-button matStepperPrevious>Anterior</button>
+                    <button mat-stroked-button matStepperNext>Siguiente</button>
                 </div>
             </div>
         </mat-step>
         <mat-step>
-            <ng-template matStepLabel>Gestion Requerida</ng-template>
+            <ng-template matStepLabel>Gestión Requerida</ng-template>
             <div class="box-options">
                 <app-request-form></app-request-form>
                 <div>
-                    <button mat-button matStepperPrevious>Anterior</button>
-                    <button mat-button matStepperNext>Siguiente</button>
+                    <button mat-stroked-button matStepperPrevious>Anterior</button>
+                    <button mat-stroked-button matStepperNext>Siguiente</button>
                 </div>
             </div>
         </mat-step>
@@ -32,12 +31,12 @@
             <div class="box-options">
                 <app-result-auth></app-result-auth>
                 <div>
-                    <button mat-button >Continuar</button>
+                    <button mat-stroked-button >Nueva llamada</button>
                 </div>
             </div>
         </mat-step>
         <div>
-            <button mat-button matStepperPrevious>Back</button>
+            <button mat-stroked-button matStepperPrevious>Back</button>
         </div>
     </mat-horizontal-stepper>
 </div>
