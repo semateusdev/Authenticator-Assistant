@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Product, TypeProduct } from '../../../core/models/products.model'
 
 import { CallService } from '../../../core/services/calls/call.service'
@@ -11,12 +11,16 @@ import { CallService } from '../../../core/services/calls/call.service'
 })
 export class ProductsFormComponent implements OnInit {
 
-  productControl = new FormControl('', Validators.required)
-  accountControl = new FormControl('', Validators.required)
+  formProduct: FormGroup
+
+  @Output() receiveProduct = new EventEmitter<FormGroup>()
 
   constructor(
-    private callService: CallService
-  ) {   }   
+    private callService: CallService,
+    private formBuilder: FormBuilder
+  ) { 
+      this.buildForm()
+    }   
 
   typeProducts: TypeProduct[] = [
     {
@@ -85,6 +89,16 @@ export class ProductsFormComponent implements OnInit {
   }
   saveOption(){
     console.log(this.typeProducts.values)
+  }
+  private buildForm(){
+    this.formProduct = this.formBuilder.group({
+      typeProduct: ['', [Validators.required]],
+      product: ['', [Validators.required]]
+    })
+  }  
+
+  sendProduct(){
+    this.receiveProduct.emit(this.formProduct)
   }
 
 }

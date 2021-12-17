@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router'
 
@@ -10,6 +10,9 @@ import { Router } from '@angular/router'
 export class ReasonFormComponent implements OnInit {
 
   form: FormGroup
+  reason: string
+
+  @Output() send = new EventEmitter<FormGroup>()
   constructor(
     private formBuilder: FormBuilder
 
@@ -20,13 +23,19 @@ export class ReasonFormComponent implements OnInit {
   ngOnInit(): void {
   }
   next(){
-    console.log('Todo Correcto')
   }
 
   private buildForm(){
     this.form = this.formBuilder.group({
-      cedula: ['', [Validators.required, Validators.minLength(5)]]
+      cedula: ['', [Validators.required, Validators.minLength(5)]],
+      authIVR: [false, [Validators.required]],
+      reason: ['', [Validators.required]]
     })
   }
+
+  sendReason(){
+    this.send.emit(this.form)
+  }
+  
 
 }

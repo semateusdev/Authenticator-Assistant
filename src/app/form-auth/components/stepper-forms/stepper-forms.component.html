@@ -1,35 +1,27 @@
 <div class="container">
-    <mat-horizontal-stepper>
-        <mat-step>
+    <mat-horizontal-stepper #stepper>
+        <mat-step [stepControl]="formReason" errorMessage="faltan datos">
             <ng-template matStepLabel>Motivo</ng-template>
             <div class="box-options">
-                <app-reason-form></app-reason-form>
+                <app-reason-form (send)="receiveReason($event)"></app-reason-form>
             </div>
         </mat-step>
-        <mat-step>
+        <mat-step [stepControl]="formProduct">
             <ng-template matStepLabel>Producto</ng-template>
             <div class="box-options">
-                <app-products-form></app-products-form>
-                <div>
-                    <button mat-stroked-button matStepperPrevious>Anterior</button>
-                    <button mat-stroked-button matStepperNext>Siguiente</button>
-                </div>
+                <app-products-form (receiveProduct)="receivedProduct($event)"></app-products-form>
             </div>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Gestión Requerida</ng-template>
             <div class="box-options">
-                <app-request-form></app-request-form>
-                <div>
-                    <button mat-stroked-button matStepperPrevious>Anterior</button>
-                    <button mat-stroked-button matStepperNext>Siguiente</button>
-                </div>
+                <app-request-form [typeProduct]="form.typeProduct" (receiveRequest)="receivedRequest($event)"></app-request-form>
             </div>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Resultado</ng-template>
             <div class="box-options">
-                <app-result-auth></app-result-auth>
+                <app-result-auth [AuthResult]="form.authReq"></app-result-auth>
                 <div>
                     <button mat-stroked-button >Nueva llamada</button>
                 </div>

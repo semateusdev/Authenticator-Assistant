@@ -1,11 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { request } from '../../../core/models/products.model'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { request, Product } from '../../../core/models/products.model'
+
 @Component({
   selector: 'app-request-form',
   templateUrl: './request-form.component.html',
   styleUrls: ['./request-form.component.scss']
 })
 export class RequestFormComponent implements OnInit {
+
+  @Input() typeProduct: string
+
+  formRequest: FormGroup
+
+  @Output() receiveRequest = new EventEmitter<FormGroup>()
 
   requestsAccount: request[] = [
     {
@@ -30,9 +38,24 @@ export class RequestFormComponent implements OnInit {
     },
   ] 
 
-  constructor() { }
+  constructor(
+    private formBuilder: FormBuilder
+  ) { 
+    this.buildForm()
+  }
+
+  private buildForm(){
+    this.formRequest = this.formBuilder.group({
+      request: ['', [Validators.required]],
+    })
+  }  
+
 
   ngOnInit(): void {
+  }
+
+  sendRequest(){
+    this.receiveRequest.emit(this.formRequest)
   }
 
 }

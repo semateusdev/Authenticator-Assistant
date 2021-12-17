@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -8,7 +8,8 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ResultAuthComponent implements OnInit {
 
-  AuthResult: string = 'strongAuth'
+  @Input() AuthResult: string 
+  
   constructor(
     private dialog: MatDialog
   ) { }
