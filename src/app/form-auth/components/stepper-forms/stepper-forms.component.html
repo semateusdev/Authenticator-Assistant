@@ -15,7 +15,7 @@
         <mat-step>
             <ng-template matStepLabel>Gestión Requerida</ng-template>
             <div class="box-options">
-                <app-request-form [typeProduct]="form.typeProduct" (receiveRequest)="receivedRequest($event)"></app-request-form>
+                <app-request-form [typeProduct]="form.typeProduct" [reason]="form.reason" (receiveRequest)="receivedRequest($event)"></app-request-form>
             </div>
         </mat-step>
         <mat-step>

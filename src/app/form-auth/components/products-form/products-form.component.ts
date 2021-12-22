@@ -79,12 +79,57 @@ export class ProductsFormComponent implements OnInit {
     },
     {
       id: '2-2',
-      name: 'Credito Hipotecario',
+      name: 'Credito Hipotecario / Leasing habitacional',
+      typeProduct: 'Creditos'
+    },    
+    {
+      id: '2-3',
+      name: 'Credito Vehiculo',
       typeProduct: 'Creditos'
     },
-    
+    {
+      id: '2-4',
+      name: 'Credito Libranza',
+      typeProduct: 'Creditos'
+    },
+    {
+      id: '2-5',
+      name: 'Credito Rotativo',
+      typeProduct: 'Creditos'
+    },
+    {
+      id: '2-6',
+      name: 'Credito Compra de cartera',
+      typeProduct: 'Creditos'
+    },
+    {
+      id: '2-7',
+      name: 'Credito Confinanciera',
+      typeProduct: 'Creditos'
+    }    
   ]
-
+  cards: Product[] = [
+    {
+      id: '3-1',
+      name: 'Tarjeta de credito generica',
+      typeProduct: 'Tarjeta de credito'
+    },
+    {
+      id: '3-2',
+      name: 'Tarjeta de credito Marca compartida',
+      typeProduct: 'Tarjeta de credito'
+    },
+    {
+      id: '3-3',
+      name: 'eCard',
+      typeProduct: 'Tarjeta de credito'
+    },
+    {
+      id: '3-4',
+      name: 'Tarjeta Gift',
+      typeProduct: 'Tarjeta de credito'
+    },
+  ]
   ngOnInit(): void {
   }
   saveOption(){

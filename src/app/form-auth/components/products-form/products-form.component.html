@@ -30,6 +30,11 @@
                                         {{ credit.name }}
                                     </mat-option> 
                                 </div>
+                                <div *ngSwitchCase="'Tarjetas'">
+                                    <mat-option *ngFor="let card of cards" [value]="card.name">
+                                        {{ card.name }}
+                                    </mat-option> 
+                                </div>
                             </div>                                                   
                         </mat-select>
                     </mat-form-field>

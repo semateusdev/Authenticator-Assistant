@@ -10,7 +10,11 @@ import { Router } from '@angular/router'
 export class ReasonFormComponent implements OnInit {
 
   form: FormGroup
-  reason: string
+  reasons: string[] = [
+    'Consulta',
+    'Requerimiento',
+    'Bloqueo o Desbloqueo'
+  ]
 
   @Output() send = new EventEmitter<FormGroup>()
   constructor(
@@ -35,6 +39,8 @@ export class ReasonFormComponent implements OnInit {
 
   sendReason(){
     this.send.emit(this.form)
+    console.log(this.form.value);
+    
   }
   
 

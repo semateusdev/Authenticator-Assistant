@@ -56,6 +56,8 @@ export class StepperFormsComponent implements OnInit {
     }else if(this.form.request === 'Exoneracion GMF (4*100)' && this.form.authIVR == '2'){
       this.form.authReq = 'meanIVR'
       console.log('NOIVR OK')
+    }else if(this.form.request === 'Desbloqueo Monitoreo'){
+      this.form.authReq = 'strongAuth'
     }
   }
 

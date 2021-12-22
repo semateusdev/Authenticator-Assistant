@@ -1,0 +1,42 @@
+.login-style{
+    width: 100%;
+    min-height: 100vh; 
+    background-color: #484f55;
+
+    position: relative;
+}
+.form-login{
+    height: auto;
+}
+.form-login img{
+    margin-top: 50px;
+}
+.form-login__item{
+    margin-bottom: 50px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+}
+mat-card{
+    width: 450px;
+    padding: 20px;
+    padding-bottom: 40px;
+    border-radius: 10%;
+    margin-top: 100px;   
+}
+mat-card-title h2{
+    width: 426px;
+    margin: 35px 0;
+    text-align: center;
+}
+footer{
+    width: 100%;
+    height: 30px;
+    background-color: #343a40;
+    text-align: center;    
+    color: #ced4da;
+
+    position: absolute;
+    bottom: 0;
+}

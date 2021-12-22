@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class CallService {
 
-  private callsType: any[] = [
+  callsType: object[] = [
     {
       reasons: [
         {
@@ -21,8 +21,7 @@ export class CallService {
           name: 'Bloqueo o Desbloqueo'
         }
       ],
-      products: [{
-        
+      products: [{        
         typeProduct: [
           {          
             id: '1',

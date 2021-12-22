@@ -22,10 +22,10 @@
             <mat-form-field appearance="fill">
                 <mat-label>Motivo</mat-label>
                 <mat-select formControlName="reason">
-                    <mat-option value="consult">Consulta</mat-option>
-                    <mat-option value="request">Requerimiento</mat-option>
-                    <mat-option value="lock-unlock">Bloqueo o Desbloqueo</mat-option>
-            </mat-select>
+                    <mat-option *ngFor="let reason of reasons" [value]="reason">
+                        {{ reason }}
+                    </mat-option>
+                </mat-select>
             </mat-form-field>
         </div>
         <button [disabled]="form.invalid" mat-button matStepperNext type="submit" (click)="sendReason()">Siguiente</button>

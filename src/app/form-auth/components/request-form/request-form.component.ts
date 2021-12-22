@@ -10,6 +10,7 @@ import { request, Product } from '../../../core/models/products.model'
 export class RequestFormComponent implements OnInit {
 
   @Input() typeProduct: string
+  @Input() reason: string
 
   formRequest: FormGroup
 
@@ -37,6 +38,14 @@ export class RequestFormComponent implements OnInit {
       name: 'Cambio oficina radicacion'
     },
   ] 
+
+  lockUnlocks: string[] = [
+    'Bloquear',
+    'Desbloqueo ATM / Redes',
+    'Desbloqueo Oficina',
+    'Desbloqueo Monitoreo',
+
+  ]
 
   constructor(
     private formBuilder: FormBuilder

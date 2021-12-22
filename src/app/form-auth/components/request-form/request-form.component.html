@@ -4,15 +4,22 @@
             <h2>¿Que se requiere hacer?</h2>
         </div>
         <div class="col-xs-12">
-            <h3>Requerimiento</h3>
+            <h3>{{ reason }}</h3>
                 <mat-form-field appearance="fill">
-                    <mat-label>Requerimiento</mat-label>
+                    <mat-label>{{ reason }}</mat-label>
                     <mat-select formControlName="request" name="request">                    
                         <div [ngSwitch]="typeProduct">
                             <div *ngSwitchCase="'Cuentas'">
-                                <mat-option *ngFor="let requestAccount of requestsAccount" [value]="requestAccount.name">
-                                    {{ requestAccount.name }}
-                                </mat-option>                                                    
+                                <div *ngIf="reason === 'Requerimiento'">
+                                    <mat-option *ngFor="let requestAccount of requestsAccount" [value]="requestAccount.name">
+                                        {{ requestAccount.name }}
+                                    </mat-option>                                                    
+                                </div>
+                                <div *ngIf="reason === 'Bloqueo o Desbloqueo'">
+                                    <mat-option *ngFor="let lockUnlock of lockUnlocks" [value]="lockUnlock">
+                                        {{ lockUnlock }}
+                                    </mat-option>                                                    
+                                </div>
                             </div>
                         </div>                    
                     </mat-select>

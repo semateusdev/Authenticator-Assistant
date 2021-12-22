@@ -1,6 +1,6 @@
 <div [ngSwitch]="AuthResult">
     <div *ngSwitchCase="'authOk'"><app-auth-ok-result></app-auth-ok-result></div>
-    <div *ngSwitchCase="'meanAuth'"><app-mean-auth-result></app-mean-auth-result></div>
-    <div *ngSwitchCase="'meanIVR'"><app-mean-ivr-result></app-mean-ivr-result></div>
-    <div *ngSwitchCase="'strongAuth'"><app-strong-auth-result></app-strong-auth-result></div>
+    <div *ngSwitchCase="'meanAuth'"><app-mean-auth-result></app-mean-auth-result><button mat-button (click)="openDialog()">Terminar</button></div>
+    <div *ngSwitchCase="'meanIVR'"><app-mean-ivr-result></app-mean-ivr-result><button mat-button (click)="openDialog()">Terminar</button></div>
+    <div *ngSwitchCase="'strongAuth'"><app-strong-auth-result></app-strong-auth-result><button mat-button (click)="openDialog()">Terminar</button></div>
 </div>
