@@ -1,6 +1,10 @@
-<div [ngSwitch]="AuthResult">
-    <div *ngSwitchCase="'authOk'"><app-auth-ok-result></app-auth-ok-result></div>
-    <div *ngSwitchCase="'meanAuth'"><app-mean-auth-result></app-mean-auth-result><button mat-button (click)="openDialog()">Terminar</button></div>
-    <div *ngSwitchCase="'meanIVR'"><app-mean-ivr-result></app-mean-ivr-result><button mat-button (click)="openDialog()">Terminar</button></div>
-    <div *ngSwitchCase="'strongAuth'"><app-strong-auth-result></app-strong-auth-result><button mat-button (click)="openDialog()">Terminar</button></div>
+<div class="resultForm-style">
+    <div [ngSwitch]="AuthReq">
+        <div *ngSwitchCase="'low-auth'"><app-low-auth (validOTP)="recivedLowAuthNI($event)" [resultAuth]="AuthResult"></app-low-auth></div>
+        <div *ngSwitchCase="'mean-auth'"><app-mean-noivr-result [resultAuth]="AuthResult"></app-mean-noivr-result></div>
+        <div *ngSwitchCase="'mean-auth-NI'"><app-mean-noivr-result [resultAuth]="AuthResult"></app-mean-noivr-result></div>
+        <div *ngSwitchCase="'strong-auth'"><app-strong-auth-result [resultAuth]="AuthResult"></app-strong-auth-result></div>
+        <div *ngSwitchCase="'noApply-auth'"><app-no-apply-auth></app-no-apply-auth></div>
+    </div>
+    <button mat-raised-button (click)="openDialog()" color="primary" class="button-continue">Continuar</button>
 </div>

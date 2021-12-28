@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-strong-auth-result',
@@ -9,6 +9,8 @@ export class StrongAuthResultComponent implements OnInit {
 
   constructor() { }
 
+  @Input() resultAuth: string
+  
   ngOnInit(): void {
   }
 

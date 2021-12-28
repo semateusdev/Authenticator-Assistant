@@ -5,5 +5,6 @@ export interface formCall{
     typeProduct: string,
     product: string,
     request: string,
-    authReq: string
+    authReq: string,
+    resultAuth: string
 }

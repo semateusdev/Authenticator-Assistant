@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MeanAuthResultComponent } from './mean-auth-result.component';
+import { LowAuthComponent } from './low-auth.component';
 
-describe('MeanAuthResultComponent', () => {
-  let component: MeanAuthResultComponent;
-  let fixture: ComponentFixture<MeanAuthResultComponent>;
+describe('LowAuthComponent', () => {
+  let component: LowAuthComponent;
+  let fixture: ComponentFixture<LowAuthComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MeanAuthResultComponent ]
+      declarations: [ LowAuthComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MeanAuthResultComponent);
+    fixture = TestBed.createComponent(LowAuthComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

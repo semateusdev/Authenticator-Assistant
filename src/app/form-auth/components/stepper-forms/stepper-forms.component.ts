@@ -3,6 +3,11 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 import { formCall } from '../../../core/models/call.model'
+import { request } from '../../../core/models/products.model'
+
+import { CallService } from "../../../core/services/calls/call.service";
+import { ELOOP } from 'constants';
+
 
 @Component({
   selector: 'app-stepper-forms',
@@ -21,6 +26,8 @@ export class StepperFormsComponent implements OnInit {
   formProduct: FormGroup
   isEditable = false;
 
+  requerimientos: request[] 
+
   form: formCall = {
     cedula: '',
     authIVR: '',
@@ -28,10 +35,13 @@ export class StepperFormsComponent implements OnInit {
     typeProduct: '',
     product: '',
     request: '',
-    authReq: ''
+    authReq: '',
+    resultAuth: ''
   } 
+  
   constructor(
     private formBuilder: FormBuilder,
+    private callService: CallService
   ) { }
 
   ngOnInit(): void {
@@ -50,14 +60,44 @@ export class StepperFormsComponent implements OnInit {
   receivedRequest(formRequest: FormGroup){
     this.form.request = formRequest.get('request')?.value
     console.log(this.form.request);    
-    if(this.form.request === 'Exoneracion GMF (4*100)' && this.form.authIVR == '1'){
-      this.form.authReq = 'authOk'
-      console.log('IVR OK')
-    }else if(this.form.request === 'Exoneracion GMF (4*100)' && this.form.authIVR == '2'){
-      this.form.authReq = 'meanIVR'
-      console.log('NOIVR OK')
-    }else if(this.form.request === 'Desbloqueo Monitoreo'){
-      this.form.authReq = 'strongAuth'
+    switch (this.form.reason) {
+      case 'Requerimiento':
+        this.requerimientos = this.callService.getAllRequestAccount()
+        break;
+      case 'Bloqueo o Desbloqueo':
+        this.requerimientos = this.callService.getAllRequestLockUnlock()
+        break;
+      default:
+        break;
+    }
+    if(this.form.authIVR == '1'){
+      for (let i = 0; i < this.requerimientos.length; i++) {
+        const element = this.requerimientos[i];        
+        if (this.form.request == element.name) {
+          this.form.authReq = element.authReq
+          console.log(element.authReq);          
+          if (element.authReq == 'mean-auth') {
+            element.PM ? this.form.resultAuth = 'IVR-SP' : this.form.resultAuth = 'IVR-NP'
+          }else{
+            this.form.resultAuth = 'IVR'
+          }
+        }
+      }
+    }else if (this.form.authIVR == '2') {
+      for (let i = 0; i < this.requerimientos.length; i++) {
+        const element = this.requerimientos[i];
+        if (this.form.request == element.name) {
+          this.form.authReq = element.authReq
+          console.log(element.authReq);          
+          if (element.authReq == 'mean-auth') {
+            this.form.authReq = 'mean-auth-NI'
+            console.log(this.form.authReq);            
+            element.PM ? this.form.resultAuth = 'IVR-SP' : this.form.resultAuth = 'IVR-NP'
+          }else{
+            this.form.resultAuth = 'NoIVR'
+          }
+        }
+      }
     }
   }
 

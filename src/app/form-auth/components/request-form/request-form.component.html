@@ -16,8 +16,8 @@
                                     </mat-option>                                                    
                                 </div>
                                 <div *ngIf="reason === 'Bloqueo o Desbloqueo'">
-                                    <mat-option *ngFor="let lockUnlock of lockUnlocks" [value]="lockUnlock">
-                                        {{ lockUnlock }}
+                                    <mat-option *ngFor="let lockUnlock of lockUnlocks" [value]="lockUnlock.name">
+                                        {{ lockUnlock.name }}
                                     </mat-option>                                                    
                                 </div>
                             </div>

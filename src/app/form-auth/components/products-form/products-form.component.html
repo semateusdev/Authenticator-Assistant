@@ -7,19 +7,46 @@
             <h3>Tipo de Producto</h3>
                 <mat-form-field appearance="fill">
                     <mat-label>Tipo de Producto</mat-label>
-                    <mat-select formControlName="typeProduct" name="products">
-                        <mat-option *ngFor="let typeProduct of typeProducts" [value]="typeProduct.name">
-                            {{ typeProduct.name }}
-                        </mat-option>                        
+                    <mat-select formControlName="typeProduct" name="typeProducts">
+                        <div *ngIf="reason === 'Bloqueo o Desbloqueo'; else allTypeProducts">
+                            <div *ngFor="let typeProduct of typeProducts" >
+                                <mat-option *ngIf="typeProduct.enabledLock" [value]="typeProduct.name">
+                                    {{ typeProduct.name }}
+                                </mat-option>
+                            </div>  
+                        </div>
+                        <ng-template #allTypeProducts>
+                            <mat-option *ngFor="let typeProduct of typeProducts" [value]="typeProduct.name">
+                                {{ typeProduct.name }}
+                            </mat-option>                        
+                        </ng-template>
                     </mat-select>
                 </mat-form-field>
         </div>      
+        
         <div *ngIf="formProduct.get('typeProduct')?.valid" class="col-xs-12">
             <h3>Tipo de {{ formProduct.get('typeProduct')?.value }}</h3>
                     <mat-form-field appearance="fill">
                         <mat-label>Tipo de {{ formProduct.get('typeProduct')?.value }}</mat-label>
                         <mat-select formControlName="product" name="products">
-                            <div [ngSwitch]="formProduct.get('typeProduct')?.value">
+                            
+                            <div *ngIf="reason === 'Bloqueo o Desbloqueo'; else allProducts">
+                                <div [ngSwitch]="formProduct.get('typeProduct')?.value">
+                                    <div *ngSwitchCase="'Cuentas'">
+                                        <div *ngFor="let account of accounts" >
+                                            <mat-option *ngIf="account.enabledLock" [value]="account.name">
+                                                {{ account.name }}
+                                            </mat-option>
+                                        </div> 
+                                    </div>
+                                    <div *ngSwitchCase="'Tarjetas'">
+                                        <mat-option *ngFor="let card of cards" [value]="card.name">
+                                            {{ card.name }}
+                                        </mat-option> 
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-template #allProducts [ngSwitch]="formProduct.get('typeProduct')?.value">
                                 <div *ngSwitchCase="'Cuentas'">
                                     <mat-option *ngFor="let account of accounts" [value]="account.name">
                                         {{ account.name }}
@@ -35,7 +62,7 @@
                                         {{ card.name }}
                                     </mat-option> 
                                 </div>
-                            </div>                                                   
+                            </ng-template>                                                   
                         </mat-select>
                     </mat-form-field>
                 </div>
@@ -45,3 +72,4 @@
         </div>
     </div>    
 </form>
+

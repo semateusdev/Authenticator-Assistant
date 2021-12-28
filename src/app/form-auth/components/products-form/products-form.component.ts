@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Product, TypeProduct } from '../../../core/models/products.model'
 
@@ -12,6 +12,7 @@ import { CallService } from '../../../core/services/calls/call.service'
 export class ProductsFormComponent implements OnInit {
 
   formProduct: FormGroup
+  @Input() reason: string
 
   @Output() receiveProduct = new EventEmitter<FormGroup>()
 
@@ -25,7 +26,8 @@ export class ProductsFormComponent implements OnInit {
   typeProducts: TypeProduct[] = [
     {
       id: '1',
-      name: 'Cuentas'
+      name: 'Cuentas',
+      enabledLock: true
     },
     {
       id: '2',
@@ -33,7 +35,8 @@ export class ProductsFormComponent implements OnInit {
     },
     {
       id: '3',
-      name: 'Tarjetas'
+      name: 'Tarjetas',
+      enabledLock: true
     },
     {
       id: '4',
@@ -48,88 +51,37 @@ export class ProductsFormComponent implements OnInit {
     {
       id: '1-1',
       name: 'Cuenta de Ahorros',
-      typeProduct: 'Cuentas'
+      typeProduct: 'Cuentas',
+      enabledLock: true
     },
     {
       id: '1-2',
       name: 'Cuenta Corriente',
-      typeProduct: 'Cuentas'
+      typeProduct: 'Cuentas',
+      enabledLock: true
     },
     {
       id: '1-3',
       name: 'Cuenta Rentable',
-      typeProduct: 'Cuentas'
+      typeProduct: 'Cuentas',
+      enabledLock: true
     },
     {
       id: '1-4',
       name: 'Cuenta AFC',
-      typeProduct: 'Cuentas'
+      typeProduct: 'Cuentas',
+      enabledLock: false
     },
     {
       id: '1-5',
       name: 'Cuenta Infantil',
-      typeProduct: 'Cuentas'
+      typeProduct: 'Cuentas',
+      enabledLock: true
     },
   ]
-  credits: Product[] = [
-    {
-      id: '2-1',
-      name: 'Credito Libre inversión',
-      typeProduct: 'Creditos'
-    },
-    {
-      id: '2-2',
-      name: 'Credito Hipotecario / Leasing habitacional',
-      typeProduct: 'Creditos'
-    },    
-    {
-      id: '2-3',
-      name: 'Credito Vehiculo',
-      typeProduct: 'Creditos'
-    },
-    {
-      id: '2-4',
-      name: 'Credito Libranza',
-      typeProduct: 'Creditos'
-    },
-    {
-      id: '2-5',
-      name: 'Credito Rotativo',
-      typeProduct: 'Creditos'
-    },
-    {
-      id: '2-6',
-      name: 'Credito Compra de cartera',
-      typeProduct: 'Creditos'
-    },
-    {
-      id: '2-7',
-      name: 'Credito Confinanciera',
-      typeProduct: 'Creditos'
-    }    
-  ]
-  cards: Product[] = [
-    {
-      id: '3-1',
-      name: 'Tarjeta de credito generica',
-      typeProduct: 'Tarjeta de credito'
-    },
-    {
-      id: '3-2',
-      name: 'Tarjeta de credito Marca compartida',
-      typeProduct: 'Tarjeta de credito'
-    },
-    {
-      id: '3-3',
-      name: 'eCard',
-      typeProduct: 'Tarjeta de credito'
-    },
-    {
-      id: '3-4',
-      name: 'Tarjeta Gift',
-      typeProduct: 'Tarjeta de credito'
-    },
-  ]
+  cards: Product[] = this.callService.getAllCards()
+  credits: Product[] = this.callService.getAllCredits()
+
   ngOnInit(): void {
   }
   saveOption(){
@@ -143,7 +95,9 @@ export class ProductsFormComponent implements OnInit {
   }  
 
   sendProduct(){
-    this.receiveProduct.emit(this.formProduct)
+    this.receiveProduct.emit(this.formProduct) 
   }
 
+  
+  
 }

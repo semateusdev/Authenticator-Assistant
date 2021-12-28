@@ -1,0 +1,51 @@
+<div [ngSwitch]="resultAuth">
+    <div *ngSwitchCase="'IVR'">
+        <div class="row">
+            <div class="col-xs-5">
+                <img width="100px" src="../../../../assets/images/check.png" alt="">
+            </div>
+            <div class="col-xs-7">
+                <h2>Autenticacion exitosa</h2>
+                <p>Cliente autenticado por IVR</p>
+                <hr><br>
+                <p></p>
+                <p>Para hacer la desmarcacion de 4*1000 debes ir a:<br>
+                    <br>
+                    <b>Cliente 360 > Transacciones en linea > Marcacion/Desmarcacion Gravamen Financiero</b>
+                    <br>
+                </p>
+                <button mat-stroked-button>Ver mas</button>
+                <p></p>
+            </div>
+        </div>
+    </div>
+    <div *ngSwitchCase="'NoIVR'">
+        <div class="row">
+            <div class="col-xs-4">
+                <img width="100px" src="../../../../assets/images/advertencia.png" alt="">
+            </div>
+            <div class="col-xs-8">
+                <div class="col-xs-12">
+                    <h2 class="subtitle" style="color: rgb(0, 61, 192);">La llamada requiere la siguiente autenticacion para continuar</h2>
+                </div>
+                <div class="col-xs-12">
+                    <h2>Para continuar debes hacer el siguiente proceso</h2>
+                </div>
+                <div class="col-xs-12">
+                    <h3 class="subtitle">Enviar codigo OTP al celular registrado</h3>
+                    <p>¿El cliente te confirma el codigo correctamente?</p>
+                    <mat-radio-group [formControl]="OTPControl" (change)="sendResult()" aria-label="Select an option" >
+                        <mat-radio-button value="1">Si</mat-radio-button>
+                        <mat-radio-button value="2">No</mat-radio-button>
+                    </mat-radio-group>
+                    <br>
+                    <button mat-stroked-button color="primary" style="margin: 15px;">Ir a Masivapp</button>
+                </div>
+            </div>
+            <!-- <button mat-button >Continuar</button> -->
+        </div>
+    </div>
+    <div *ngSwitchDefault>
+        No hay resultados
+    </div>
+</div>

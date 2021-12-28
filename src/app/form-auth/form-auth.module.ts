@@ -11,8 +11,10 @@ import { RequestFormComponent } from './components/request-form/request-form.com
 import { ResultAuthComponent } from './components/result-auth/result-auth.component';
 import { StrongAuthResultComponent } from './components/strong-auth-result/strong-auth-result.component';
 import { AuthOkResultComponent } from './components/auth-ok-result/auth-ok-result.component';
-import { MeanAuthResultComponent } from './components/mean-auth-result/mean-auth-result.component';
 import { MeanIvrResultComponent } from './components/mean-ivr-result/mean-ivr-result.component';
+import { LowAuthComponent } from './components/low-auth/low-auth.component';
+import { MeanNoivrResultComponent } from './components/mean-noivr-result/mean-noivr-result.component';
+import { NoApplyAuthComponent } from './components/no-apply-auth/no-apply-auth.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +25,10 @@ import { MeanIvrResultComponent } from './components/mean-ivr-result/mean-ivr-re
     ResultAuthComponent,
     StrongAuthResultComponent,
     AuthOkResultComponent,
-    MeanAuthResultComponent,
     MeanIvrResultComponent,
+    LowAuthComponent,
+    MeanNoivrResultComponent,
+    NoApplyAuthComponent
   ],
   imports: [
     CommonModule,

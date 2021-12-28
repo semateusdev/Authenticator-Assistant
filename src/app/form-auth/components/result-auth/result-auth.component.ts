@@ -8,21 +8,35 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ResultAuthComponent implements OnInit {
 
+  @Input() AuthReq: string 
   @Input() AuthResult: string 
+
+  isValidAuth: boolean
   
   constructor(
     private dialog: MatDialog
-  ) { }
+  ) {}
 
   ngOnInit(): void {
+    
   }
+
   openDialog(){
-    this.dialog.open(ResultDialog)
+    if (this.isValidAuth) {
+      this.dialog.open(ResultDialogOk)      
+    }else{
+      alert('Autenticacion no exitosa')
+    }
+  }
+
+  recivedLowAuthNI(OTPValid: string){
+    OTPValid === '1' ? this.isValidAuth = true : this.isValidAuth = false
+    console.log(this.isValidAuth);    
   }
 
 }
 @Component({
-  selector: 'result-dialog.html',
+  selector: 'result-dialog',
   templateUrl: 'result-dialog.html',
 })
-export class ResultDialog {}
+export class ResultDialogOk {}
