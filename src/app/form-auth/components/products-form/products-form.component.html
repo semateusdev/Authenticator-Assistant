@@ -27,9 +27,8 @@
         <div *ngIf="formProduct.get('typeProduct')?.valid" class="col-xs-12">
             <h3>Tipo de {{ formProduct.get('typeProduct')?.value }}</h3>
                     <mat-form-field appearance="fill">
-                        <mat-label>Tipo de {{ formProduct.get('typeProduct')?.value }}</mat-label>
+                        <mat-label>Tipo de {{ formProduct.get('typeProduct')?.value }}</mat-label> 
                         <mat-select formControlName="product" name="products">
-                            
                             <div *ngIf="reason === 'Bloqueo o Desbloqueo'; else allProducts">
                                 <div [ngSwitch]="formProduct.get('typeProduct')?.value">
                                     <div *ngSwitchCase="'Cuentas'">

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Product, TypeProduct } from '../../../core/models/products.model'
 
@@ -9,21 +9,26 @@ import { CallService } from '../../../core/services/calls/call.service'
   templateUrl: './products-form.component.html',
   styleUrls: ['./products-form.component.scss']
 })
-export class ProductsFormComponent implements OnInit {
-
+export class ProductsFormComponent implements OnInit, OnChanges {
+  
   formProduct: FormGroup
   @Input() reason: string
-
+  
   @Output() receiveProduct = new EventEmitter<FormGroup>()
-
+  
+  @Input() resetForm: boolean = false
+  
   constructor(
     private callService: CallService,
     private formBuilder: FormBuilder
-  ) { 
+    ) { 
       this.buildForm()
     }   
-
-  typeProducts: TypeProduct[] = [
+    
+    accounts: Product[] = this.callService.getAllAccount()
+    cards: Product[] = this.callService.getAllCards()
+    credits: Product[] = this.callService.getAllCredits()
+    typeProducts: TypeProduct[] = [
     {
       id: '1',
       name: 'Cuentas',
@@ -47,42 +52,18 @@ export class ProductsFormComponent implements OnInit {
       name: 'No cliente'
     },    
   ]
-  accounts: Product[] = [
-    {
-      id: '1-1',
-      name: 'Cuenta de Ahorros',
-      typeProduct: 'Cuentas',
-      enabledLock: true
-    },
-    {
-      id: '1-2',
-      name: 'Cuenta Corriente',
-      typeProduct: 'Cuentas',
-      enabledLock: true
-    },
-    {
-      id: '1-3',
-      name: 'Cuenta Rentable',
-      typeProduct: 'Cuentas',
-      enabledLock: true
-    },
-    {
-      id: '1-4',
-      name: 'Cuenta AFC',
-      typeProduct: 'Cuentas',
-      enabledLock: false
-    },
-    {
-      id: '1-5',
-      name: 'Cuenta Infantil',
-      typeProduct: 'Cuentas',
-      enabledLock: true
-    },
-  ]
-  cards: Product[] = this.callService.getAllCards()
-  credits: Product[] = this.callService.getAllCredits()
 
   ngOnInit(): void {
+    console.log(this.accounts.values);    
+    // for (let i = 0; i < this.accounts.length; i++) {
+    //   const element = this.accounts[i];
+    //   console.log(element);
+      
+    // }
+  }
+
+  ngOnChanges(): void{
+        
   }
   saveOption(){
     console.log(this.typeProducts.values)
@@ -97,7 +78,8 @@ export class ProductsFormComponent implements OnInit {
   sendProduct(){
     this.receiveProduct.emit(this.formProduct) 
   }
-
   
-  
+  resetform(){    
+    this.formProduct.reset()
+  }
 }

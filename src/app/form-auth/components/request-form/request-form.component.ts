@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { request, Product } from '../../../core/models/products.model'
 
+import { formCall } from '../../../core/models/call.model'
 import { CallService } from "../../../core/services/calls/call.service";
 
 @Component({
@@ -12,7 +13,7 @@ import { CallService } from "../../../core/services/calls/call.service";
 export class RequestFormComponent implements OnInit {
 
   @Input() typeProduct: string
-  @Input() reason: string
+  @Input() formCall: formCall
 
   formRequest: FormGroup
 
@@ -27,6 +28,8 @@ export class RequestFormComponent implements OnInit {
   requestsAccount: request[] = this.callService.getAllRequestAccount()
 
   lockUnlocks: request[] = this.callService.getAllRequestLockUnlock()
+  
+  accounts: Product[] = this.callService.getAllAccount()
 
 
   private buildForm(){
@@ -42,5 +45,9 @@ export class RequestFormComponent implements OnInit {
   sendRequest(){
     this.receiveRequest.emit(this.formRequest)
   }
+  resetform(){    
+    this.formRequest.reset()
+  }
+
 
 }

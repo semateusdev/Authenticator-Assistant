@@ -7,6 +7,7 @@ import { Product, request } from '../../models/products.model';
 export class CallService {
   requestsAccount: request[] = [
     {
+      id: 'RC1',
       type: 'Solicitud',
       producto: 'Cuenta',
       name: 'Exoneracion GMF (4*100)',
@@ -14,6 +15,7 @@ export class CallService {
       autResult: ''
     },
     {
+      id: 'RC2',
       type: 'Solicitud',
       producto: 'Cuenta',
       name: 'Enviar extracto y/o certificados',
@@ -22,6 +24,7 @@ export class CallService {
       autResult: ''
     },
     {
+      id: 'RC3',
       type: 'Solicitud',
       producto: 'Cuenta',
       name: 'Cancelar cuenta',
@@ -29,6 +32,7 @@ export class CallService {
       autResult: ''
     },
     {
+      id: 'RC4',
       type: 'Solicitud',
       producto: 'Cuenta',
       name: 'Cambio oficina radicacion',
@@ -38,6 +42,7 @@ export class CallService {
   ] 
   requestLockUnlock: request[] = [
     {
+      id: 'RLU1',
       type: 'Bloqueo o desbloqueo',
       producto: 'Cuenta',
       name: 'Bloqueo tarjeta Debito',
@@ -45,6 +50,7 @@ export class CallService {
       autResult: 'IVR'
     },
     {
+      id: 'RLU2',
       type: 'Bloqueo o desbloqueo',
       producto: 'Cuenta',
       name: 'Bloqueo cuenta de ahorros',
@@ -52,6 +58,7 @@ export class CallService {
       autResult: 'IVR'
     },
     {
+      id: 'RLU3',
       type: 'Bloqueo o desbloqueo',
       producto: 'Cuenta',
       name: 'Desbloqueo cuenta monitoreo',
@@ -59,6 +66,7 @@ export class CallService {
       autResult: ''
     },
     {
+      id: 'RLU4',
       type: 'Bloqueo o desbloqueo',
       producto: 'Cuenta',
       name: 'Desbloqueo cuenta ATM/Redes',
@@ -66,6 +74,7 @@ export class CallService {
       autResult: ''
     },
     {
+      id: 'RLU5',
       type: 'Bloqueo o desbloqueo',
       producto: 'Cuenta',
       name: 'Desbloqueo cuenta Oficina',
@@ -73,6 +82,7 @@ export class CallService {
       autResult: ''
     },
     {
+      id: 'RLU6',
       type: 'Bloqueo o desbloqueo',
       producto: 'Tarjeta',
       name: 'Bloqueo tarjeta credito',
@@ -80,6 +90,7 @@ export class CallService {
       autResult: ''
     },
     {
+      id: 'RLU7',
       type: 'Bloqueo o desbloqueo',
       producto: 'Cuenta',
       name: 'Desbloqueo TC Monitoreo',
@@ -88,39 +99,44 @@ export class CallService {
     },
   ]
 
-  accounts: [
+  accounts: Product[] = [
     {
       id: '1-1',
       name: 'Cuenta de Ahorros',
       typeProduct: 'Cuentas',
-      enabledLock: true
+      enabledLock: true,
+      requests: ['RC1', 'RC2', 'RC3', 'RC4', 'RLU1', 'RLU2', 'RLU3', 'RLU4', 'RLU5', ]
     },
     {
       id: '1-2',
       name: 'Cuenta Corriente',
       typeProduct: 'Cuentas',
-      enabledLock: true
+      enabledLock: true,
+      requests: ['RC1', 'RC2', 'RC3', 'RC4', 'RLU1', 'RLU2', 'RLU3', 'RLU4', 'RLU5', ]
     },
     {
       id: '1-3',
       name: 'Cuenta Rentable',
       typeProduct: 'Cuentas',
-      enabledLock: true
+      enabledLock: true,
+      requests: ['RC1', 'RC2', 'RC3', 'RC4', 'RLU1', 'RLU2', 'RLU3', 'RLU4', 'RLU5', ]
     },
     {
       id: '1-4',
       name: 'Cuenta AFC',
       typeProduct: 'Cuentas',
-      enabledLock: false
+      enabledLock: false,
+      requests: ['RC2', 'RC3']
     },
     {
       id: '1-5',
       name: 'Cuenta Infantil',
       typeProduct: 'Cuentas',
-      enabledLock: true
+      enabledLock: true,
+      requests: ['RC2', 'RC3', 'RC4', 'RLU1', 'RLU2', 'RLU3', 'RLU4', 'RLU5', ]
     },
   ]
-  credits:[
+  credits: Product[] = [
     {
       id: '2-1',
       name: 'Credito Libre inversión',
@@ -164,7 +180,7 @@ export class CallService {
       enabledLock: false
     }    
   ]
-  cards:[
+  cards: Product[] = [
     {
       id: '3-1',
       name: 'Tarjeta de credito generica',
@@ -193,6 +209,8 @@ export class CallService {
   
 
   getAllAccount(){
+    console.log('True', this.accounts);
+    
     return this.accounts
   }
   getAllCards(){

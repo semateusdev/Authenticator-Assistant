@@ -9,8 +9,10 @@ export interface Product{
     name: string
     typeProduct: string
     enabledLock: boolean
+    requests?: string[]
 }
 export interface request{
+    id: string
     type: string,
     producto: string | string[]
     name: string

@@ -4,25 +4,40 @@
             <h2>¿Que se requiere hacer?</h2>
         </div>
         <div class="col-xs-12">
-            <h3>{{ reason }}</h3>
+            <h3>{{ formCall.reason }}</h3>
                 <mat-form-field appearance="fill">
-                    <mat-label>{{ reason }}</mat-label>
-                    <mat-select formControlName="request" name="request">                    
-                        <div [ngSwitch]="typeProduct">
-                            <div *ngSwitchCase="'Cuentas'">
-                                <div *ngIf="reason === 'Requerimiento'">
-                                    <mat-option *ngFor="let requestAccount of requestsAccount" [value]="requestAccount.name">
-                                        {{ requestAccount.name }}
-                                    </mat-option>                                                    
-                                </div>
-                                <div *ngIf="reason === 'Bloqueo o Desbloqueo'">
-                                    <mat-option *ngFor="let lockUnlock of lockUnlocks" [value]="lockUnlock.name">
-                                        {{ lockUnlock.name }}
-                                    </mat-option>                                                    
-                                </div>
+                    <mat-label>{{ formCall.reason }}</mat-label>                                     
+                    <mat-select [ngSwitch]="typeProduct" formControlName="request" name="request">
+                        <div *ngSwitchCase="'Cuentas'">
+                            <div *ngIf="formCall.reason === 'Requerimiento'">
+                                <div *ngFor="let requestAccount of requestsAccount; " >
+                                    <div *ngFor="let account of accounts">
+                                        <div *ngIf="formCall.product === account.name">
+                                            <div *ngFor="let request of account.requests">
+                                                <mat-option *ngIf="request === requestAccount.id" [value]="requestAccount.name">                                                        
+                                                        {{ requestAccount.name }}
+                                                </mat-option>
+                                            </div>
+                                        </div>
+                                    </div>                                        
+                                </div>                                                    
                             </div>
-                        </div>                    
-                    </mat-select>
+                            <div *ngIf="formCall.reason === 'Bloqueo o Desbloqueo'">
+                                <div *ngFor="let lockUnlock of lockUnlocks">
+                                        <div *ngFor="let account of accounts">
+                                            <div *ngIf="formCall.product === account.name">
+                                                <div *ngFor="let request of account.requests">
+                                                    <mat-option *ngIf="request === lockUnlock.id" [value]="lockUnlock.name">                                                        
+                                                            {{ lockUnlock.name }}
+                                                    </mat-option>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>                                                    
+                            </div>
+                        </div>
+                    </mat-select>                    
+                    
                 </mat-form-field>
         </div> 
         <div class="col-xs-12">

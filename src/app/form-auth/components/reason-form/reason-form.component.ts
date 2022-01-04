@@ -42,6 +42,8 @@ export class ReasonFormComponent implements OnInit {
     console.log(this.form.value);
     
   }
-  
+  resetform(){    
+    this.form.reset()
+  }
 
 }

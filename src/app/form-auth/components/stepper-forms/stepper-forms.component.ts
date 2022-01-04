@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 import { formCall } from '../../../core/models/call.model'
 import { request } from '../../../core/models/products.model'
 
 import { CallService } from "../../../core/services/calls/call.service";
 import { ELOOP } from 'constants';
-
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-stepper-forms',
@@ -24,7 +25,11 @@ export class StepperFormsComponent implements OnInit {
 
   formReason: FormGroup
   formProduct: FormGroup
+  reserFormProduct: boolean
   isEditable = false;
+  hasAuth: boolean
+
+  @ViewChild('stepper') stepper: MatStepper
 
   requerimientos: request[] 
 
@@ -41,7 +46,8 @@ export class StepperFormsComponent implements OnInit {
   
   constructor(
     private formBuilder: FormBuilder,
-    private callService: CallService
+    private callService: CallService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -100,5 +106,44 @@ export class StepperFormsComponent implements OnInit {
       }
     }
   }
+  isValidAuth(isValid: boolean){
+    this.hasAuth = isValid
+    console.log('this.hasAuth', this.hasAuth);  
+    this.openDialog()
+    this.stepper.reset() 
+    this.reserFormProduct = true
+  }
+  openDialog(){
+    console.log(this.hasAuth);
+    const dialogRef = this.dialog.open(ResultCallOk, {
+      width: '350px',
+      data: this.hasAuth
+    })   
+    dialogRef.afterClosed().subscribe(res =>{
+      console.log('Dialog exitoso')
+    })   
+  }
 
+  reset(){
+    this.stepper.reset()
+  }
+
+}
+
+
+
+@Component({
+  selector: 'result-call-ok',
+  templateUrl: 'result-call-dialog.html'
+})
+export class ResultCallOk {
+
+  constructor(
+    public dialogRef: MatDialogRef<ResultCallOk>,
+    @Inject(MAT_DIALOG_DATA) public data: boolean){    
+  }
+
+  onClickClose(): void {
+    this.dialogRef.close();
+  }
 }

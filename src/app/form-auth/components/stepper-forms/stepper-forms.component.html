@@ -3,25 +3,29 @@
         <mat-step [stepControl]="formReason" errorMessage="faltan datos">
             <ng-template matStepLabel>Motivo</ng-template>
             <div class="box-options">
-                <app-reason-form (send)="receiveReason($event)"></app-reason-form>
+                <app-reason-form #reasonForm (send)="receiveReason($event)"></app-reason-form>
             </div>
         </mat-step>
         <mat-step [stepControl]="formProduct">
             <ng-template matStepLabel>Producto</ng-template>
             <div class="box-options">
-                <app-products-form [reason]="form.reason" (receiveProduct)="receivedProduct($event)"></app-products-form>
+                <app-products-form #productForm [reason]="form.reason" (receiveProduct)="receivedProduct($event)" id="productForm"></app-products-form>
             </div>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Gestión Requerida</ng-template>
             <div class="box-options">
-                <app-request-form [typeProduct]="form.typeProduct" [reason]="form.reason" (receiveRequest)="receivedRequest($event)"></app-request-form>
+                <app-request-form #requestForm [typeProduct]="form.typeProduct" [formCall]="form" (receiveRequest)="receivedRequest($event)"></app-request-form>
             </div>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Resultado</ng-template>
             <div class="box-options">
-                <app-result-auth [AuthReq]="form.authReq" [AuthResult]="form.resultAuth"></app-result-auth>
+                <app-result-auth (ValidAuth)="isValidAuth($event); productForm.resetform(); reasonForm.resetform(); requestForm.resetform()" [AuthForm]="form" [AuthResult]="form.resultAuth"></app-result-auth>
+                <!-- <button (click)="reset()">reset</button> -->
+                <div *ngIf="form.authIVR === '1' && form.authReq === 'low-auth'">
+                    <button mat-button color="primary" (click)="stepper.reset(); productForm.resetform(); reasonForm.resetform(); requestForm.resetform()">Finalizar</button> 
+                </div>
             </div>
         </mat-step>
         <div>
